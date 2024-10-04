@@ -1,10 +1,10 @@
 import {Router} from 'express'
-const router = Router()
-
 import {getAllJobs, getSingleJob, createJob, updateJob, deleteJob} from '../controllers/jobControllers.js'
+import {validateJobInput, validateIdParam} from '../middleware/validationMiddleware.js' 
 
+const router = Router()
 router.route('/').get(getAllJobs).post(createJob)
-router.route('/:id').get(getSingleJob).patch(updateJob).delete(deleteJob)
+router.route('/:id').get(validateJobInput, getSingleJob).patch(validateJobInput, validateJobInput, updateJob).delete(validateIdParam, deleteJob)
 
 
 export default router
