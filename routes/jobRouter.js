@@ -1,5 +1,5 @@
 import {Router} from 'express'
-import {getAllJobs, getSingleJob, createJob, updateJob, deleteJob} from '../controllers/jobControllers.js'
+import {getAllJobs, getSingleJob, createJob, updateJob, deleteJob} from '../controllers/jobController.js'
 import {validateJobInput, validateIdParam} from '../middleware/validationMiddleware.js' 
 
 const router = Router()
