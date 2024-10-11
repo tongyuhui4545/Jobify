@@ -1,12 +1,26 @@
-import { Link } from "react-router-dom";
+import { Form, redirect, useNavigation, Link } from "react-router-dom";
 import Wrapper from "../assets/wrappers/RegisterAndLoginPage";
-import { Logo } from "../components";
-import FormRow from "../components/FormRow";
+import { Logo, FormRow } from "../components";
+import customFetch from '../utils/customFetch'
+
+export const action = async ({ request }) => {
+  const formData = await request.formData();
+  const data = Object.fromEntries(formData);
+
+  try {
+    await customFetch.post("/auth/register", data);
+    return redirect("/");
+  } catch (err) {
+    console.log(err);
+    
+    return err;
+  }
+};
 
 const Register = () => {
   return (
     <Wrapper>
-      <form className="form">
+      <Form method="post" className="form">
         <Logo />
         <h4>Register</h4>
         <FormRow type="text" name="name" defaultValue="john"></FormRow>
@@ -17,7 +31,11 @@ const Register = () => {
           defaultValue="Smith"
         ></FormRow>
         <FormRow type="text" name="location" defaultValue="earth"></FormRow>
-        <FormRow type="email" name="email" defaultValue="john@gmail.com"></FormRow>
+        <FormRow
+          type="email"
+          name="email"
+          defaultValue="john@gmail.com"
+        ></FormRow>
         <FormRow type="password" name="password" defaultValue=""></FormRow>
         <button type="submit" className="btn btn-block">
           Submit
@@ -28,7 +46,7 @@ const Register = () => {
             Log in
           </Link>
         </p>
-      </form>
+      </Form>
     </Wrapper>
   );
 };
