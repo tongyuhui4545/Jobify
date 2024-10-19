@@ -9,12 +9,12 @@ let jobs = [
 ];
 
 export const getAllJobs = async (req, res) => {
-  const jobs = await Job.find({})
+  const jobs = await Job.find({createdBy: req.user.userId})
   res.status(StatusCodes.OK).json({ jobs });
 };
 
-export const createJob = async (req, res) => { console.log(1111);
-
+export const createJob = async (req, res) => { 
+  req.body.createdBy = req.user.userId
   const { company, position } = req.body;
  const job = await Job.create({
   company, position

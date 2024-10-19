@@ -1,27 +1,36 @@
 import express from "express";
 import "express-async-errors";
 import morgan from "morgan";
+import cookieParser from 'cookie-parser'
 import * as dotenv from "dotenv";
 
 import errorHandlerMiddleware from "./middleware/errorHandlerMiddleware.js";
 import mongoose from "mongoose";
 import {body, validationResult} from 'express-validator'
-
+import { authenticateUser } from "./middleware/authMiddleware.js";
 //router
 import jobRouter from "./routes/jobRouter.js";
 import authRouter from "./routes/authRouter.js";
+import userRouter from "./routes/userRouter.js";
 
 dotenv.config();
 const app = express();
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser())
 
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
 
+<<<<<<< HEAD
 app.use("/api/v1/jobs", jobRouter);
 app.use("/api/v1/auth", authRouter);
+=======
+app.use("/app/v1/jobs", authenticateUser, jobRouter);
+app.use("/app/v1/auth", authenticateUser, userRouter);
+app.use("/app/v1/auth", authRouter);
+>>>>>>> 5be76ac8dd8d2d2c3a3b694e721af8a8a3c2aa44
 
 app.use("*", (req, res) => {
   res.status(404).json({ msg: "not found" });
