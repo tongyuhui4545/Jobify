@@ -24,31 +24,11 @@ export const login = async (req, res) => {
     user && (await comparePassword(req.body.password, user.password));
 
   if (!isValidUser) throw new UnauthenticatedError("invalid credentials");
-<<<<<<< HEAD
   else {
     res.status(StatusCodes.OK).json({msg: 'login successfully'})
   }
-=======
-
-  const token = createJWT({
-    userId: user._id,
-    role: user.role,
-  });
-
-  res.cookie("token", token, {
-    httpOnly: true,
-    expires: new Date(Date.now() + 1000 * 60 * 60 * 24),
-    secure: process.env.NODE_ENV === "production",
-  });
-
-  res.status(200).json({ msg: "logged in" });
 };
 
-export const logout = (req, res) => {
-  res.cookie("token", "logout", {
-    httpOnly: true,
-    expires: new Date(Date.now()),
-  });
-  res.stateus(StatusCodes.OK).json({ msg: "user logged out" });
->>>>>>> 5be76ac8dd8d2d2c3a3b694e721af8a8a3c2aa44
-};
+export const logout = async (req, res) => {
+  return
+}

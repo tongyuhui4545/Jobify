@@ -23,14 +23,8 @@ if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
 
-<<<<<<< HEAD
 app.use("/api/v1/jobs", jobRouter);
 app.use("/api/v1/auth", authRouter);
-=======
-app.use("/app/v1/jobs", authenticateUser, jobRouter);
-app.use("/app/v1/auth", authenticateUser, userRouter);
-app.use("/app/v1/auth", authRouter);
->>>>>>> 5be76ac8dd8d2d2c3a3b694e721af8a8a3c2aa44
 
 app.use("*", (req, res) => {
   res.status(404).json({ msg: "not found" });
