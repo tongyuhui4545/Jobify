@@ -1,6 +1,5 @@
 import { Form, redirect, useNavigation, Link } from "react-router-dom";
 import Wrapper from "../assets/wrappers/RegisterAndLoginPage";
-<<<<<<< HEAD
 import { Logo } from "../components";
 import customFetch from '../utils/customerFetch'
 import FormRow from "../components/FormRow";
@@ -17,24 +16,6 @@ export const action = async ({ request }) => {
     return error
   }
 }
-=======
-import { Logo, FormRow } from "../components";
-import customFetch from '../utils/customFetch'
-
-export const action = async ({ request }) => {
-  const formData = await request.formData();
-  const data = Object.fromEntries(formData);
-
-  try {
-    await customFetch.post("/auth/register", data);
-    return redirect("/");
-  } catch (err) {
-    console.log(err);
-    
-    return err;
-  }
-};
->>>>>>> 5be76ac8dd8d2d2c3a3b694e721af8a8a3c2aa44
 
 const Register = () => {
   const navigation = useNavigation();
