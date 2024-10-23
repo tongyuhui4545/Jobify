@@ -4,7 +4,7 @@ import {validateJobInput, validateIdParam} from '../middleware/validationMiddlew
 
 const router = Router()
 router.route('/').get(getAllJobs).post(createJob)
-router.route('/:id').get(validateJobInput, getSingleJob).patch(validateJobInput, validateJobInput, updateJob).delete(validateIdParam, deleteJob)
+router.route('/:id').get(getSingleJob).patch(validateJobInput, updateJob).delete(validateIdParam, deleteJob)
 
 
 export default router
