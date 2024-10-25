@@ -10,7 +10,7 @@ const links = [
     {text: 'add job', path:'.', icon:<FaWpforms />},
     {text: 'all job', path:'all-jobs', icon:<MdQueryStats />},
     {text: 'stats', path:'stats', icon:<IoBarChartSharp />},
-    {text: 'profile', path:'.', icon:<ImProfile />},
+    {text: 'profile', path:'profile', icon:<ImProfile />},
     {text: 'admin', path:'admin', icon:<MdAdminPanelSettings />},
 ]
 

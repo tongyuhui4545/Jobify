@@ -1,25 +1,25 @@
-import { nanoid } from "nanoid";
 import Job from "../models/JobModel.js";
-import {StatusCodes} from 'http-status-codes'
-import {NotFoundError} from '../errors/customError.js'
+import { StatusCodes } from 'http-status-codes'
+import dayjs from 'dayjs'
 
 export const getAllJobs = async (req, res) => {
-  const jobs = await Job.find({createdBy: req.user.userId})
+  const jobs = await Job.find({ createdBy: req.user.userId })
   res.status(StatusCodes.OK).json({ jobs });
 };
 
-export const createJob = async (req, res) => { console.log(1110);
+export const createJob = async (req, res) => {
+  console.log(1110);
 
 
   req.body.createdBy = req.user.userId
-  const { company, position } = req.body; 
-  
- const job = await Job.create({
-  company, position, createdBy: req.user.userId
+  const { company, position } = req.body;
 
- }); 
- 
- res.status(StatusCodes.CREATED).json({job})
+  const job = await Job.create({
+    company, position, createdBy: req.user.userId
+
+  });
+
+  res.status(StatusCodes.CREATED).json({ job })
 };
 
 export const getSingleJob = async (req, res) => {
@@ -43,3 +43,8 @@ export const deleteJob = async (req, res) => {
 
   res.status(200).json({ msg: "job modified", removedJob });
 };
+
+export const showStats = async (req, res) => {
+  res.send('stats')
+}
+
