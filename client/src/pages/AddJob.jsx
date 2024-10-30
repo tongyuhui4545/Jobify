@@ -17,7 +17,6 @@ export const action = async ({ request }) => {
     toast.error(error?.response?.data?.msg)
     return error
   }
-  return null
 }
 
 const AddJob = () => {

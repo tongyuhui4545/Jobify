@@ -2,16 +2,14 @@ import { UnauthorizedError, UnauthenticatedError, BadRequestError } from "../err
 import { verifyJWT } from '../utils/tokenUtils.js';
 
 export const authenticateUser = async (req, res, next) => {
-  console.log(req.cookies);
   const { token } = req.cookies;
-  if (!token) throw new UnauthenticatedError("authentication invalid");
+  if (!token) throw new UnauthenticatedError("authentication invalid"); 
   try {
     const { userId, role } = verifyJWT(token);
     const testUser = userId === "671a1483958257a551441510"
-    req.user = { userId, role, testUser };
-
+    req.user = { userId, role, testUser }; 
     next();
-  } catch (error) {
+  } catch (error) {    
     throw new UnauthenticatedError("authentication invalid");
   }
 };
